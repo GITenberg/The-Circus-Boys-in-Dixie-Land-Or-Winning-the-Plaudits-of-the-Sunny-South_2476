@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: ic/96YciCE9pGrdNwsSIZNwMLZCh5mrGgW8Y3Oes7+RbQEBpMlUJO2A70sitFXsNtEW0QQntphLV42GD2rC7fnuRcC8jKJhDipjN0jY39ogYTwvXJzs4WhFshBART250W5z0OX4r/V9SACuHDMiqK270WOYmsbQ32y7wdBuAgYl4cTnJ249LfXWl23nQyUaf7CnRG7MI9qxelsFpnAnfEh+QJtNTO3ycTUWHEXNlxz0CEReHUGVAjYY+nXelg+usH/l9JoMAWDA+CFet3irIY+EINgIyytaviuwraTbquvZQK5YdBcZFo6/sEe/FTwCEHzFP/9pdiepEN1Actqr4pKpOZkWYuNg10Wh4FXQpPSFBhOJm4Zho5AMuC7EnfWtkQLZf6bDs+3ug4HYtL9AdHHTGelIlSBV5uty4b/HZqL5N9Wo6zrq1YUxchaICM9bOL6y54bUDsrMziHlg/aVietLM8ZNPUj6twIZYYJwyEpbnBNDSFoWryrBOSK0dzJ3eTtA2uteQ74AV4L/iJGuSE8myJKQAPGlLCdXHb+5Q/geUPoZaRqZGZFkqadUiS4WzfjAa4pQ7AIAzDn5INg3nnHjhyrVhpWOa7W8SbPmc9BM4+os2PBCkCjPIGA7tWw53kZEXfr3c5/2ixa/7XOJe+SURPMcslgpKbpJVTcJI5l8=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/The-Circus-Boys-in-Dixie-Land-Or-Winning-the-Plaudits-of-the-Sunny-South_2476
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
