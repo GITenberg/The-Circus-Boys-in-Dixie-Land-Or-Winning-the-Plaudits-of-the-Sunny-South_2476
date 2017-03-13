@@ -1,5 +1,8 @@
 _repo: The-Circus-Boys-in-Dixie-Land-Or-Winning-the-Plaudits-of-the-Sunny-South_2476
-_version: 0.1.0
+_version: 0.2.0
+covers:
+- cover_type: generated
+  image_path: cover.png
 creator:
   author:
     agent_name: Darlington, Edgar B. P.
@@ -7,6 +10,8 @@ creator:
     url: http://www.gutenberg.org/2009/agents/928
 description: This 1911 installment of the Circus Boys series chronicles the troupe's
   experiences while performing in the South.
+edition_identifiers:
+  edition_id: http://www.gutenberg.org/ebooks/2476#The-Circus-Boys-in-Dixie-Land-Or-Winning-the-Plaudits-of-the-Sunny-South
 gutenberg_issued: '2001-01-01'
 gutenberg_type: Text
 identifiers:
