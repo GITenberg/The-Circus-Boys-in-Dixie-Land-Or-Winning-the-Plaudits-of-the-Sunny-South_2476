@@ -1,5 +1,5 @@
 _repo: The-Circus-Boys-in-Dixie-Land-Or-Winning-the-Plaudits-of-the-Sunny-South_2476
-_version: 0.2.0
+_version: 0.2.1
 covers:
 - cover_type: generated
   image_path: cover.png
@@ -25,5 +25,6 @@ subjects:
 - !lcsh 'Adventure stories'
 - !lcc 'PZ'
 - !lcsh 'Circus -- Juvenile fiction'
+- GITenberg
 title: The Circus Boys in Dixie Land; Or, Winning the Plaudits of the Sunny South
 url: http://www.gutenberg.org/ebooks/2476
